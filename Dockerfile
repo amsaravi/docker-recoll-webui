@@ -1,8 +1,8 @@
 FROM debian:buster-slim
 MAINTAINER amsaravi
 
-Run gpg --keyserver pool.sks-keyservers.net --recv-key F8E3347256922A8AE767605B7808CE96D38B9201	&& \
-	gpg --export '7808CE96D38B9201' | sudo apt-key add -
+Run gpg --keyserver pool.sks-keyservers.net --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
+Run gpg --export '7808CE96D38B9201' | sudo apt-key add -
 
 RUN echo deb http://www.lesbonscomptes.com/recoll/debian/ buster main > \
 	/etc/apt/sources.list.d/recoll.list
