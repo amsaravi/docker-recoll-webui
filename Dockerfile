@@ -18,11 +18,12 @@ RUN echo deb http://www.lesbonscomptes.com/recoll/debian/ buster main > \
 RUN echo deb-src http://www.lesbonscomptes.com/recoll/debian/ buster main >> \
         /etc/apt/sources.list.d/recoll.list
 RUN apt-get install  -y --no-install-recommends recollcmd python3-recoll
-RUN apt autoremove
+RUN apt-get -y remove gnupg
+RUN apt -y autoremove
 
 # install additional dependencies and software here
-# RUN apt-get install -y --no-install-recommends poppler-utils
-# RUN apt-get install -y --no-install-recommends unrtf antiword
+RUN apt-get install -y --no-install-recommends poppler-utils
+RUN apt-get install -y --no-install-recommends unrtf antiword
 # RUN apt-get install -y --no-install-recommends unzip
 RUN apt-get clean
 
