@@ -8,23 +8,22 @@ RUN apt-get update && \
 
 # install recollcmd from recolls programmers website
 RUN apt-get install -y --no-install-recommends gnupg
-RUN gpg --keyserver pool.sks-keyservers.net --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
-RUN gpg --export '7808CE96D38B9201' | apt-key add --no-tty -
+COPY recoll.gpg  /root/recoll.gpg
+RUN gpg --import  /root/recoll.gpg
+RUN gpg --export '7808CE96D38B9201' | apt-key add -
 RUN apt-get install --reinstall -y ca-certificates
-
 RUN apt-get update
 RUN echo deb http://www.lesbonscomptes.com/recoll/debian/ buster main > \
         /etc/apt/sources.list.d/recoll.list
 RUN echo deb-src http://www.lesbonscomptes.com/recoll/debian/ buster main >> \
         /etc/apt/sources.list.d/recoll.list
 RUN apt-get install  -y --no-install-recommends recollcmd python3-recoll
-RUN apt-get remove gnupg
 RUN apt autoremove
 
 # install additional dependencies and software here
 # RUN apt-get install -y --no-install-recommends poppler-utils
 # RUN apt-get install -y --no-install-recommends unrtf antiword
-# RUN apt-get install -y --no-install-recommends unzip 
+# RUN apt-get install -y --no-install-recommends unzip
 RUN apt-get clean
 
 RUN mkdir /homes && mkdir /root/.recoll
