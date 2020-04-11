@@ -26,11 +26,13 @@ RUN apt autoremove
 # RUN apt-get install -y --no-install-recommends unzip
 RUN apt-get clean
 
-RUN mkdir /homes && mkdir /root/.recoll
+RUN mkdir /docs && mkdir /root/.recoll
+COPY recoll.conf /root/.recoll/recoll.conf
+RUN echo topdirs = /docs >> /root/.recoll/recoll.conf
 
 RUN cd / && git clone https://framagit.org/medoc92/recollwebui.git
 
-VOLUME /homes
+VOLUME /docs
 EXPOSE 8080
 
 CMD ["/usr/bin/python3", "/recollwebui/webui-standalone.py", "-a", "0.0.0.0"]
