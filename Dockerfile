@@ -24,6 +24,7 @@ RUN apt-get install -y --no-install-recommends poppler-utils
 RUN apt-get install -y --no-install-recommends unrtf antiword
 RUN apt-get install -y --no-install-recommends unzip
 RUN apt-get install -y --no-install-recommends tesseract-ocr
+RUN apt-get install -y --no-install-recommends exiftool
 
 RUN apt-get update
 RUN apt-get -y --with-new-pkgs --no-install-recommends upgrade
