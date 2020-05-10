@@ -28,9 +28,9 @@ RUN apt-get install -y --no-install-recommends unrtf antiword
 RUN apt-get install -y --no-install-recommends unzip
 RUN apt-get install -y --no-install-recommends tesseract-ocr
 
-RUN apt-get remove gnupg
-RUN apt-get autoremove
-RUN apt-get clean
+RUN apt-get -y remove gnupg
+RUN apt-get -y autoremove
+RUN apt-get -y clean
 
 RUN mkdir /root/.recoll
 COPY recoll.conf /root/.recoll/recoll.conf
