@@ -12,20 +12,24 @@ COPY recoll.gpg  /root/recoll.gpg
 RUN gpg --import  /root/recoll.gpg
 RUN gpg --export '7808CE96D38B9201' | apt-key add -
 RUN apt-get install --reinstall -y ca-certificates
+
 RUN apt-get update
 RUN apt-get -y --with-new-pkgs --no-install-recommends upgrade
+
 RUN echo deb http://www.lesbonscomptes.com/recoll/debian/ buster main > \
         /etc/apt/sources.list.d/recoll.list
 RUN echo deb-src http://www.lesbonscomptes.com/recoll/debian/ buster main >> \
         /etc/apt/sources.list.d/recoll.list
 RUN apt-get install  -y --no-install-recommends recollcmd python3-recoll
-RUN apt autoremove
 
 # install additional dependencies and software here
 RUN apt-get install -y --no-install-recommends poppler-utils
 RUN apt-get install -y --no-install-recommends unrtf antiword
 RUN apt-get install -y --no-install-recommends unzip
 RUN apt-get install -y --no-install-recommends tesseract-ocr
+
+RUN apt-get remove gnupg
+RUN apt-get autoremove
 RUN apt-get clean
 
 RUN mkdir /root/.recoll
