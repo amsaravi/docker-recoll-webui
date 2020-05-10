@@ -21,18 +21,22 @@ RUN apt-get install  -y --no-install-recommends recollcmd python3-recoll
 RUN apt autoremove
 
 # install additional dependencies and software here
-# RUN apt-get install -y --no-install-recommends poppler-utils
-# RUN apt-get install -y --no-install-recommends unrtf antiword
-# RUN apt-get install -y --no-install-recommends unzip
+RUN apt-get install -y --no-install-recommends poppler-utils
+RUN apt-get install -y --no-install-recommends unrtf antiword
+RUN apt-get install -y --no-install-recommends unzip
+RUN apt-get install -y --no-install-recommends tesseract-ocr
 RUN apt-get clean
 
-RUN mkdir /docs && mkdir /root/.recoll
+RUN mkdir /root/.recoll
 COPY recoll.conf /root/.recoll/recoll.conf
-RUN echo topdirs = /docs >> /root/.recoll/recoll.conf
+RUN echo topdirs = /docs0 /docs1 /docs2 /docs3 /docs4 /docs5 /docs6 /docs7 /docs8 /docs9 >> /root/.recoll/recoll.conf
+RUN echo ocrprogs = tesseract >> /root/.recoll/recoll.conf
+RUN echo tesseractlang = eng+fra+spa+ger >> /root/.recoll/recoll.conf
 
 RUN cd / && git clone https://framagit.org/medoc92/recollwebui.git
 
-VOLUME /docs
+RUN mkdir /docs0 /docs1 /docs2 /docs3 /docs4 /docs5 /docs6 /docs7 /docs8 /docs9
+VOLUME /docs0 /docs1 /docs2 /docs3 /docs4 /docs5 /docs6 /docs7 /docs8 /docs9 /root/.recoll
 EXPOSE 8080
 
 CMD ["/usr/bin/python3", "/recollwebui/webui-standalone.py", "-a", "0.0.0.0"]
