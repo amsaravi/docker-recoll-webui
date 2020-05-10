@@ -12,9 +12,8 @@ recoll with webui in a docker container
 - up to 10 different folders (with their subfolders) can be indexed (/docs0 to /docs9)
 # links
 
-- source project: https://github.com/PeroqDev/docker-recoll-webui
-- forked from: https://github.com/amsaravi/docker-recoll-webui
-- docker hub: https://hub.docker.com/repository/docker/peroq/recoll
+- source project: https://github.com/amsaravi/docker-recoll-webui
+- docker hub: https://hub.docker.com/r/amsaravi/recoll-web-ui
 # installation steps
 
 - in docker start the wizard to create a docker container from this image: mount <your documents folder> to `/docs0`
