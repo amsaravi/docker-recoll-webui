@@ -13,9 +13,6 @@ RUN gpg --import  /root/recoll.gpg
 RUN gpg --export '7808CE96D38B9201' | apt-key add -
 RUN apt-get install --reinstall -y ca-certificates
 
-RUN apt-get update
-RUN apt-get -y --with-new-pkgs --no-install-recommends upgrade
-
 RUN echo deb http://www.lesbonscomptes.com/recoll/debian/ buster main > \
         /etc/apt/sources.list.d/recoll.list
 RUN echo deb-src http://www.lesbonscomptes.com/recoll/debian/ buster main >> \
@@ -28,6 +25,8 @@ RUN apt-get install -y --no-install-recommends unrtf antiword
 RUN apt-get install -y --no-install-recommends unzip
 RUN apt-get install -y --no-install-recommends tesseract-ocr
 
+RUN apt-get update
+RUN apt-get -y --with-new-pkgs --no-install-recommends upgrade
 RUN apt-get -y remove gnupg
 RUN apt-get -y autoremove
 RUN apt-get -y clean
